@@ -6,12 +6,12 @@ class Challenge3
   
   def score(buffer, char)
     message = xor(buffer, char)
-    score = message.select { |x| x.between?( "A".ord, "Z".ord) || x.between?( "a".ord, "z".ord) }.count
+    score = message.select { |x| x.between?( "A".ord, "Z".ord) || x.between?( "a".ord, "z".ord) || x == " ".ord}.count
     { :score => score, :message => message.pack("c*") , :char => char.chr }
   end
   
   def decode
-    scores = (1..200).collect do |char|
+    scores = (0..200).collect do |char|
       self.score("1b37373331363f78151b7f2b783431333d78397828372d363c78373e783a393b3736", char)
     end
     
