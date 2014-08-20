@@ -3,7 +3,7 @@ require "base64"
 class Challenge6
   
   def initialize
-    @cypher_text = Base64.decode64(IO.readlines(File.dirname(__FILE__) +"/challenge6.txt").join)
+    @cipher_text = Base64.decode64(IO.readlines(File.dirname(__FILE__) +"/challenge6.txt").join)
   end
   
   def hamming_distance(string1, string2)
@@ -19,11 +19,15 @@ class Challenge6
     
     range = 2..40
     range.collect do |keysize|
-      distance = hamming_distance(@cypher_text[0..keysize], @cypher_text[keysize..(keysize*2)])
+      distance = hamming_distance(@cipher_text[0..keysize], @cipher_text[keysize..(keysize*2)])
       distances << { :distance => distance, :keysize => keysize }
     end
     
     distances.sort_by { |distance| distance[:distance] }[0..2]
+  end
+  
+  def get_cipher_blocks(keysize)
+    @cipher_text.bytes.each_with_index.group_by { |el, index| index % keysize }
   end
   
 end
