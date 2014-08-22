@@ -11,7 +11,7 @@ class Challenge4
     scores = (0..200).collect do |char|
       @challenge3.score(buffer, char).merge :buffer => buffer
     end
-    scores.sort { |x,y| x[:score] <=> y[:score] }.reverse[0..top]
+    scores.sort { |x,y| x[:score] <=> y[:score] }.last(top)
   end
   
   def decode

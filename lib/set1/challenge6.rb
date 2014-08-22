@@ -23,7 +23,7 @@ class Challenge6
       distances << { :distance => distance, :keysize => keysize }
     end
     
-    distances.sort_by { |distance| distance[:distance] }[0..2]
+    distances.sort_by { |distance| distance[:distance] }.first(3)
   end
   
   def get_cipher_blocks(keysize)

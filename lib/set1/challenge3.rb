@@ -15,7 +15,7 @@ class Challenge3
       self.score("1b37373331363f78151b7f2b783431333d78397828372d363c78373e783a393b3736", char)
     end
     
-    puts scores.sort { |x,y| x[:score] <=> y[:score] }.last(5)
+    puts scores.sort { |x,y| x[:score] <=> y[:score] }.last(5) 
   end  
     
 end
