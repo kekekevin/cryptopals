@@ -4,7 +4,7 @@ class Challenge4
   
   def initialize
     @challenge3 = Challenge3.new
-    @cypher_texts = IO.readlines(File.dirname(__FILE__) +"/challenge4.txt")
+    @cipher_texts = IO.readlines(File.dirname(__FILE__) +"/challenge4.txt")
   end
   
   def top_scores(buffer, top)
@@ -15,7 +15,7 @@ class Challenge4
   end
   
   def decode
-    @cypher_texts.collect { |t| self.top_scores(t, 3) }.flatten.sort { |x,y| x[:score] <=> y[:score] }.reverse[0..10]
+    @cipher_texts.collect { |t| self.top_scores(t, 3) }.flatten.sort { |x,y| x[:score] <=> y[:score] }.last(10)
   end  
     
 end
