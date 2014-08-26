@@ -1,5 +1,7 @@
 require "base64"
 
+require_relative "challenge4"
+
 class Challenge6
   
   def initialize
@@ -27,7 +29,17 @@ class Challenge6
   end
   
   def get_cipher_blocks(keysize)
-    @cipher_text.bytes.each_with_index.group_by { |el, index| index % keysize }
+    blocks = {}
+    
+    grouped_blocks = @cipher_text.bytes.each_with_index.group_by { |el, index| index % keysize }
+    grouped_blocks.each_pair { |key, value| blocks[key] = value.collect { |b| b[0] } }
+    
+    blocks
+  end
+  
+  def solve
+    challenge4 = Challenge4.new
+    find_keysize().collect { |size| get_cipher_blocks(size[:keysize]) }[0]
   end
   
 end

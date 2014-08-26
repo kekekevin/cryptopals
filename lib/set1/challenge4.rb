@@ -4,7 +4,7 @@ class Challenge4
   
   def initialize
     @challenge3 = Challenge3.new
-    @cipher_texts = IO.readlines(File.dirname(__FILE__) +"/challenge4.txt")
+    @cipher_texts = IO.readlines(File.dirname(__FILE__) + "/challenge4.txt")
   end
   
   def top_scores(buffer, top)
