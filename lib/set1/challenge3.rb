@@ -4,8 +4,8 @@ class Challenge3
     xor = buffer.each_char.each_slice(2).collect { |x| x.join.hex ^ char.ord }
   end
   
-  def score(buffer, char)
-    message = xor(buffer, char)
+  def score(hex_buffer, char)
+    message = xor(hex_buffer, char)
     score = message.select { |x| x.between?( "A".ord, "Z".ord) || x.between?( "a".ord, "z".ord) || x == " ".ord}.count
     { :score => score, :message => message.pack("c*") , :char => char.chr }
   end

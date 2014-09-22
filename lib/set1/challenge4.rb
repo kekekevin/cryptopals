@@ -7,9 +7,9 @@ class Challenge4
     @cipher_texts = IO.readlines(File.dirname(__FILE__) + "/challenge4.txt")
   end
   
-  def top_scores(buffer, top)
+  def top_scores(hex_buffer, top)
     scores = (0..200).collect do |char|
-      @challenge3.score(buffer, char).merge :buffer => buffer
+      @challenge3.score(hex_buffer, char).merge :buffer => hex_buffer
     end
     scores.sort { |x,y| x[:score] <=> y[:score] }.last(top)
   end
